@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.participant;
 
 public class Name {
     private String name;

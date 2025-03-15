@@ -1,17 +1,18 @@
-import blackjack.Batting;
-import blackjack.Name;
-import blackjack.Player;
+import blackjack.Game;
+import blackjack.participant.Name;
+import blackjack.participant.Player;
 import console.Console;
 import controller.BlackJackController;
 import controller.Response;
 import java.util.ArrayList;
 import java.util.List;
+import service.BlackJackService;
 
 public class Application {
     public static void main(String[] args) {
         // init
         Console console = Console.getInstance();
-        BlackJackController blackJackController = new BlackJackController();
+        BlackJackController blackJackController = new BlackJackController(new BlackJackService());
 
         // 1. 이름입력
         console.askNames();
@@ -26,12 +27,23 @@ public class Application {
         for (Name name : names) {
             console.askBatting(name.getName());
             Request<String> battingRequest = new Request<>(console.read());
-            Response<Player> player = blackJackController.createBatting(name, new BattingConverter().convert(battingRequest));
+            Response<Player> player = blackJackController.createBatting(name, new BattingConverter().convert(battingRequest)); //todo: dto
 
             players.add(player.getData());
         }
 
+        // 3. 게임 생성
+        Response<Game> gameResponse = blackJackController.createGame(players); //todo: Request wrapping & converter
 
+        Game game = gameResponse.getData();
+
+        // 4. dealing
+        /*
+        딜러와 pobi, jason에게 2장을 나누었습니다.
+        딜러: 3다이아몬드
+        pobi카드: 2하트, 8스페이드
+        jason카드: 7클로버, K스페이드
+        */
 
     }
 
