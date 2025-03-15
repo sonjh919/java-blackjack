@@ -2,6 +2,7 @@ package controller;
 
 import blackjack.Batting;
 import blackjack.Name;
+import blackjack.Player;
 import java.util.List;
 
 public class BlackJackController {
@@ -12,7 +13,7 @@ public class BlackJackController {
                 .toList());
     }
 
-    public Response<Batting> createBatting(int batting) {
-        return new Response<>(Batting.from(batting));
+    public Response<Player> createBatting(Name name, int batting) {
+        return new Response<>(Player.of(name, Batting.from(batting)));
     }
 }
