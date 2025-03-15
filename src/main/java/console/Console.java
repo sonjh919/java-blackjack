@@ -1,5 +1,7 @@
 package console;
 
+import blackjack.Game;
+
 public class Console {
     private static Console CONSOLE = new Console();
 
@@ -25,6 +27,10 @@ public class Console {
 
     public void askBatting(String name){
         output.batting(name);
+    }
+
+    public void displayDealing(Game game) {
+        output.dealing(game);
     }
 }
 

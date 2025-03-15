@@ -1,5 +1,6 @@
 package blackjack.participant;
 
+import blackjack.card.CardDeck;
 import java.util.List;
 
 public class Players {
@@ -13,6 +14,10 @@ public class Players {
 
     private Players(final List<Player> players) {
         this.players = players;
+    }
+
+    public void hit(final CardDeck standard) {
+        players.forEach(player -> player.hit(standard));
     }
 
     public List<Player> getPlayers() {

@@ -24,4 +24,8 @@ public class BlackJackController { //todo: service
     public Response<Game> createGame(List<Player> players) {
         return new Response<>(blackJackService.createGame(players));
     }
+
+    public Response<Game> dealing(Game game) {
+        return new Response<>(blackJackService.dealing(game));
+    }
 }

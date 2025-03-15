@@ -12,6 +12,7 @@ public class Hand {
 
     private final List<Card> cards;
 
+
     public static Hand create(){
         return new Hand();
     }
@@ -22,6 +23,17 @@ public class Hand {
 
     private Hand(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public void addCard(final Card card) {
+        cards.add(card);
+    }
+
+    public Hand getExceptHidden() {
+        List<Card> firstOpenCards = new ArrayList<>(cards);
+        firstOpenCards.removeLast();
+
+        return new Hand(firstOpenCards);
     }
 
 //    public void addCard(final Card card) {
@@ -64,8 +76,8 @@ public class Hand {
 //        return new Hand(firstOpenCards);
 //    }
 //
-//    public List<Card> getCards() {
-//        return cards;
-//    }
+    public List<Card> getCards() {
+        return cards;
+    }
 
 }

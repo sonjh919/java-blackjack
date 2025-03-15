@@ -5,7 +5,7 @@ import blackjack.participant.Dealer;
 import blackjack.participant.Players;
 
 public class Game {
-    private static final int INITIAL_HIT_COUNT = 2;
+    private static final int INITIAL_DEALING_COUNT = 2;
 
     private final Players players;
     private final Dealer dealer;
@@ -20,6 +20,14 @@ public class Game {
         this.players = players;
         this.dealer = dealer;
         this.standard = standard;
+    }
+
+    public Game dealing() {
+        for (int i = 0; i < INITIAL_DEALING_COUNT; i++) {
+            players.hit(standard);
+            dealer.hit(standard);
+        }
+        return this;
     }
 
     public Players getPlayers() {

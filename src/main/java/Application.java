@@ -38,12 +38,9 @@ public class Application {
         Game game = gameResponse.getData();
 
         // 4. dealing
-        /*
-        딜러와 pobi, jason에게 2장을 나누었습니다.
-        딜러: 3다이아몬드
-        pobi카드: 2하트, 8스페이드
-        jason카드: 7클로버, K스페이드
-        */
+        Response<Game> dealingResponse = blackJackController.dealing(game);
+
+        console.displayDealing(dealingResponse.getData());
 
     }
 

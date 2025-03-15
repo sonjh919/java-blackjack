@@ -30,4 +30,8 @@ public class BlackJackService {
         CardDeckFactory cardDeckFactory = new CardDeckFactory();
         return cardDeckFactory.create();
     }
+
+    public Game dealing(Game game) {
+        return game.dealing();
+    }
 }

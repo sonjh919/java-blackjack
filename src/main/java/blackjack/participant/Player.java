@@ -1,5 +1,7 @@
 package blackjack.participant;
 
+import blackjack.card.Hand;
+
 public class Player extends Participant{
     private final Name name;
     private final Batting batting;
@@ -20,5 +22,10 @@ public class Player extends Participant{
 
     public Batting getBatting() {
         return batting;
+    }
+
+    @Override
+    public Hand getFirstCard() {
+        return hand;
     }
 }
