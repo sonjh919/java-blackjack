@@ -31,19 +31,23 @@ public class Output {
         System.out.printf("%s의 배팅 금액은?" + NEW_LINE, name);
     }
 
-    public void dealing(Game game) {
+    public void hand(Game game) {
         List<String> names = game.getPlayers().getPlayers().stream()
                 .map(Player::getName)
                 .map(Name::getName)
                 .toList();
 
         System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names));
-        System.out.println("딜러:"  + printParticipantDeck(game.getDealer().getFirstCard()));
+        System.out.println("딜러: "  + printParticipantDeck(game.getDealer().getFirstCard()));
 
         for (Player player : game.getPlayers().getPlayers()) {
-            System.out.printf("%s카드: :", player.getName().getName());
-            System.out.println(printParticipantDeck(player.getHand()));
+            hand(player);
         }
+    }
+
+    public void hand(Player player) {
+        System.out.printf("%s카드: ", player.getName().getName());
+        System.out.println(printParticipantDeck(player.getHand()));
     }
 
     public String printParticipantDeck(final Hand hand) {
@@ -58,5 +62,10 @@ public class Output {
         Rank rank = card.getRank();
         Suit suit = card.getSuit();
         return NUMBER_SYMBOL_MAP.getOrDefault(rank, String.valueOf(rank.getScore())) + suit;
+    }
+
+    public void hit(String name) {
+        System.out.printf("%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)", name);
+        System.out.print(NEW_LINE);
     }
 }

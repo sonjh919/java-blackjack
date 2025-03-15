@@ -36,31 +36,32 @@ public class Hand {
         return new Hand(firstOpenCards);
     }
 
+    public int sumWithAce() {
+        int sum = cards.stream()
+                .mapToInt(Card::getScore)
+                .sum();
+
+        if (sum <= BONUS_THRESHOLD && hasA()) {
+            sum += ACE_BONUS;
+        }
+
+        return sum;
+    }
+
+    private boolean hasA() {
+        return cards.stream()
+                .anyMatch(Card::isA);
+    }
+
+    public boolean isBust() {
+        return sumWithAce() > BLACKJACK_NUMBER;
+    }
+
 //    public void addCard(final Card card) {
 //        cards.add(card);
 //    }
 //
-//    public int sumWithAce() {
-//        int sum = cards.stream()
-//                .mapToInt(Card::getScore)
-//                .sum();
-//
-//        if (sum <= BONUS_THRESHOLD && hasA()) {
-//            sum += ACE_BONUS;
-//        }
-//
-//        return sum;
-//    }
-//
-//    private boolean hasA() {
-//        return cards.stream()
-//                .anyMatch(Card::isA);
-//    }
-//
-//    public boolean isBust() {
-//        return sumWithAce() > BLACKJACK_NUMBER;
-//    }
-//
+
 //    public boolean isBlackJackNumber(){
 //        return sumWithAce() == BLACKJACK_NUMBER;
 //    }

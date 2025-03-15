@@ -11,6 +11,7 @@ import blackjack.participant.Players;
 import java.util.List;
 
 public class BlackJackService {
+
     public List<Name> createNames(List<String> names) {
         return names.stream()
                 .map(Name::from)
@@ -33,5 +34,12 @@ public class BlackJackService {
 
     public Game dealing(Game game) {
         return game.dealing();
+    }
+
+    public Boolean hit(Player player, Boolean isYes, CardDeck standard) {
+        if(isYes){
+            player.hit(standard);
+        }
+        return player.isBust();
     }
 }

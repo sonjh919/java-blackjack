@@ -14,6 +14,10 @@ public abstract class Participant {
         hand.addCard(standard.hitCard());
     }
 
+    public boolean isBust() {
+        return hand.isBust();
+    }
+
     public Hand getHand() {
         return hand;
     }
