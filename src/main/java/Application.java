@@ -81,7 +81,7 @@ public class Application {
         console.displayProfit();
 
         // 9. 딜러 수익 출력
-        Response<Integer> dealerProfitResponse = blackJackController.dealerProfit(game);
+        Response<Integer> dealerProfitResponse = blackJackController.dealerProfit(game.getPlayers(), game.getDealer());
         console.displayDealerProfit(dealerProfitResponse.data());
 
         // 10. 플레이어 결과 출력

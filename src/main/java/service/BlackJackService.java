@@ -10,6 +10,7 @@ import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import java.util.List;
+import java.util.Map;
 
 public class BlackJackService {
 
@@ -56,12 +57,20 @@ public class BlackJackService {
         return participant.sum();
     }
 
-    public int dealerProfit(Game game) {
-        return game.calculateDealerResult();
+    public int dealerProfit(Players players, Dealer dealer) {
+        Map<Player, Integer> profitOfPlayer = players.calculateProfit(dealer);
+        return profit(profitOfPlayer);
     }
 
     public int playerProfit(Player player, Dealer dealer) {
         return player.calculateProfit(dealer);
     }
 
+    private int profit(Map<Player, Integer> profitOfPlayer) {
+        int sum = 0;
+        for (Integer value : profitOfPlayer.values()) {
+            sum += value;
+        }
+        return -sum;
+    }
 }
