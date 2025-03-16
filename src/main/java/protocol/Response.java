@@ -1,7 +1,7 @@
-package controller;
+package protocol;
 
 public class Response<T> {
-    T data;
+    private final T data;
 
     public Response(T data) {
         this.data = data;

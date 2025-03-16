@@ -3,9 +3,13 @@ import blackjack.participant.Name;
 import blackjack.participant.Player;
 import console.Console;
 import controller.BlackJackController;
-import controller.Response;
+import converter.AnswerConverter;
+import converter.BattingConverter;
+import converter.NameConverter;
 import java.util.ArrayList;
 import java.util.List;
+import protocol.Request;
+import protocol.Response;
 import service.BlackJackService;
 
 public class Application {
@@ -37,7 +41,7 @@ public class Application {
         Game game = gameResponse.getData();
 
         // 4. 카드 2장 나눠주기
-        Response<Game> dealingResponse = blackJackController.dealing(game); //todo: dto
+        Response<Game> dealingResponse = blackJackController.dealing(game); //todo: dto, 한번에보내기 vs 나눠서보내기
         console.displayHand(dealingResponse.getData());
 
         // 5. 카드 더 받을거니?
@@ -48,12 +52,11 @@ public class Application {
                 Request<String> answerRequest = new Request<>(console.read());
                 boolean isYes = new AnswerConverter().convert(answerRequest); //todo: converter 중간 계층으로 빼기..?
 
-                Response<Boolean> stop = blackJackController.hit(player, isYes, game.getStandard()); //todo: 에러처리 & standard 넘기기 싫음...
+                Response<Boolean> stop = blackJackController.hit(player, isYes, game.getStandard()); //fixme: 에러처리 & standard 넘기기 싫음...
                 console.displayHand(player);
 
                 if(stop.getData() || !isYes)break;
             }
-
         }
 
     }

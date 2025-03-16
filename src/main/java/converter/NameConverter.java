@@ -1,5 +1,8 @@
+package converter;
+
 import java.util.Arrays;
 import java.util.List;
+import protocol.Request;
 
 public class NameConverter implements Converter<List<String>> {
     private static final int MAXIMUM_PLAYER_NUMBER = 6;

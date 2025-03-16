@@ -1,5 +1,7 @@
+package protocol;
+
 public class Request<T> {
-    private T data;
+    private final T data;
 
     public Request(T data) {
         this.data = data;

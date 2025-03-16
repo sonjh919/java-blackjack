@@ -1,4 +1,8 @@
-public class AnswerConverter implements Converter<Boolean>{
+package converter;
+
+import protocol.Request;
+
+public class AnswerConverter implements Converter<Boolean> {
     @Override
     public Boolean convert(Request<String> request) {
             if (request.getData().equals("y")) {

@@ -1,4 +1,8 @@
-public class BattingConverter implements Converter<Integer>{
+package converter;
+
+import protocol.Request;
+
+public class BattingConverter implements Converter<Integer> {
     private static final int MIN_MONEY_RANGE = 0;
 
     @Override
