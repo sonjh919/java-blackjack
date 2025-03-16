@@ -1,6 +1,6 @@
 package blackjack.participant;
 
-import static blackjack.Match.calculateResult;
+import static blackjack.match.Match.calculateResult;
 
 import blackjack.card.Hand;
 

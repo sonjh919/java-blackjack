@@ -1,6 +1,6 @@
 package blackjack.participant;
 
-import blackjack.Match;
+import blackjack.match.Match;
 
 public class Batting {
     private final int batting;
