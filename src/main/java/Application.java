@@ -59,6 +59,9 @@ public class Application {
             }
         }
 
+        // 6. 딜러 카드받기
+        Response<Boolean> isHit = blackJackController.hit(game.getDealer(), game.getStandard());
+        console.displayHit(isHit.getData());
     }
 
 

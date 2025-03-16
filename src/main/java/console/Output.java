@@ -68,4 +68,10 @@ public class Output {
         System.out.printf("%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)", name);
         System.out.print(NEW_LINE);
     }
+
+    public void displayHit(boolean isHit) {
+        if(isHit){
+            System.out.println("딜러는 16이하라 한장의 카드를 더 받았습니다.");
+        }
+    }
 }

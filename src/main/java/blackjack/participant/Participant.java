@@ -18,6 +18,10 @@ public abstract class Participant {
         return hand.isBust();
     }
 
+    public int sum() {
+        return hand.sumWithAce();
+    }
+
     public Hand getHand() {
         return hand;
     }

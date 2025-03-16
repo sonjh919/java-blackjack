@@ -1,5 +1,6 @@
 package blackjack.participant;
 
+import blackjack.card.CardDeck;
 import blackjack.card.Hand;
 
 public class Dealer extends Participant {
@@ -11,6 +12,16 @@ public class Dealer extends Participant {
 
     private Dealer() {
         super();
+    }
+
+    public void draw(final CardDeck standard) {
+        while (isUnderThreshold()) {
+            hand.addCard(standard.hitCard());
+        }
+    }
+
+    public boolean isUnderThreshold() {
+        return sum() <= DEALER_DRAW_THRESHOLD;
     }
 
     @Override

@@ -36,10 +36,18 @@ public class BlackJackService {
         return game.dealing();
     }
 
-    public Boolean hit(Player player, Boolean isYes, CardDeck standard) {
+    public boolean hit(Player player, boolean isYes, CardDeck standard) {
         if(isYes){
             player.hit(standard);
         }
         return player.isBust();
+    }
+
+    public boolean hit(Dealer dealer, CardDeck standard) {
+        boolean canHit = dealer.isUnderThreshold();
+        while(dealer.isUnderThreshold()){
+            dealer.hit(standard);
+        }
+        return canHit;
     }
 }

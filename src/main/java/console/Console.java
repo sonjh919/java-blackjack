@@ -2,6 +2,7 @@ package console;
 
 import blackjack.Game;
 import blackjack.participant.Player;
+import protocol.Response;
 
 public class Console {
     private static Console CONSOLE = new Console();
@@ -42,5 +43,8 @@ public class Console {
         output.hit(name);
     }
 
+    public void displayHit(boolean isHit) {
+        output.displayHit(isHit);
+    }
 }
 
