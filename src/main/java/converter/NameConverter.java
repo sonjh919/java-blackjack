@@ -8,7 +8,7 @@ public class NameConverter implements Converter<List<String>> {
     private static final int MAXIMUM_PLAYER_NUMBER = 6;
 
     @Override
-    public List<String> convert(Request<String> request) {
+    public List<String> convert(final Request<String> request) {
         List<String> names = Arrays.stream(request.data().split(","))
                 .map(String::trim)
                 .toList();

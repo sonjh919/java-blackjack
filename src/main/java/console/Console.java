@@ -29,35 +29,35 @@ public class Console {
         output.name();
     }
 
-    public void askBatting(String name) {
+    public void askBatting(final String name) {
         output.batting(name);
     }
 
-    public void displayDealing(List<Name> names) {
+    public void displayDealing(final List<Name> names) {
         output.dealing(names);
     }
 
-    public void displayHand(Hand dealerHand) {
+    public void displayHand(final Hand dealerHand) {
         output.hand(dealerHand);
     }
 
-    public void displayHand(Name name, Hand playerHand) {
+    public void displayHand(final Name name, final Hand playerHand) {
         output.hand(name, playerHand);
     }
 
-    public void displayHand(Player player) {
+    public void displayHand(final Player player) {
         output.hand(player);
     }
 
-    public void askHit(String name) {
+    public void askHit(final String name) {
         output.hit(name);
     }
 
-    public void displayHit(boolean isHit) {
+    public void displayHit(final boolean isHit) {
         output.hit(isHit);
     }
 
-    public void displayDealerResult(Dealer dealer, int dealerResult) {
+    public void displayDealerResult(final Dealer dealer, final int dealerResult) {
         output.displayDealerResult(dealer, dealerResult);
     }
 
@@ -65,15 +65,15 @@ public class Console {
         output.displayProfit();
     }
 
-    public void displayPlayerResult(Player player, int playersResult) {
+    public void displayPlayerResult(final Player player, final int playersResult) {
         output.displayPlayerResult(player, playersResult);
     }
 
-    public void displayDealerProfit(int profit) {
+    public void displayDealerProfit(final int profit) {
         output.displayDealerProfit(profit);
     }
 
-    public void displayPlayerProfit(Player player, int profit) {
+    public void displayPlayerProfit(final Player player, final int profit) {
         output.displayPlayerProfit(player, profit);
     }
 }

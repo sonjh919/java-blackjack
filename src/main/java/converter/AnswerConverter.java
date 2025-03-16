@@ -4,7 +4,7 @@ import protocol.Request;
 
 public class AnswerConverter implements Converter<Boolean> {
     @Override
-    public Boolean convert(Request<String> request) {
+    public Boolean convert(final Request<String> request) {
         if (request.data().equals("y")) {
             return true;
         }

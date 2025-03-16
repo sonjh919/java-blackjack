@@ -1,6 +1,5 @@
 package blackjack.participant;
 
-import blackjack.card.CardDeck;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -15,11 +14,7 @@ public class Players {
         this.players = players;
     }
 
-    public void hit(final CardDeck standard) {
-        players.forEach(player -> player.hit(standard));
-    }
-
-    public LinkedHashMap<Player, Integer> calculateProfit(Dealer dealer) {
+    public LinkedHashMap<Player, Integer> calculateProfit(final Dealer dealer) {
         LinkedHashMap<Player, Integer> profitOfPlayer = new LinkedHashMap<>();
 
         for (Player player : players) {
@@ -27,10 +22,6 @@ public class Players {
         }
 
         return profitOfPlayer;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
     }
 
 }

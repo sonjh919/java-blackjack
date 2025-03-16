@@ -14,13 +14,13 @@ import java.util.Map;
 
 public class BlackJackService {
 
-    public List<Name> createNames(List<String> names) {
+    public List<Name> createNames(final List<String> names) {
         return names.stream()
                 .map(Name::from)
                 .toList();
     }
 
-    public Player createBatting(Name name, int batting) {
+    public Player createBatting(final Name name, final int batting) {
         return Player.of(name, Batting.from(batting));
     }
 
@@ -33,7 +33,7 @@ public class BlackJackService {
         return Dealer.create();
     }
 
-    public Hand dealing(Participant participant, CardDeck standard) {
+    public Hand dealing(final Participant participant, final CardDeck standard) {
         final int initialDealingCount = 2;
 
         for (int i = 0; i < initialDealingCount; i++) {
@@ -43,14 +43,14 @@ public class BlackJackService {
         return participant.getFirstCard();
     }
 
-    public boolean hit(Player player, boolean isYes, CardDeck standard) {
+    public boolean hit(final Player player, final boolean isYes, final CardDeck standard) {
         if (isYes) {
             player.hit(standard);
         }
         return player.isBust();
     }
 
-    public boolean hit(Dealer dealer, CardDeck standard) {
+    public boolean hit(final Dealer dealer, final CardDeck standard) {
         boolean canHit = dealer.isUnderThreshold();
         while (dealer.isUnderThreshold()) {
             dealer.hit(standard);
@@ -58,20 +58,20 @@ public class BlackJackService {
         return canHit;
     }
 
-    public int sum(Participant participant) {
+    public int sum(final Participant participant) {
         return participant.sum();
     }
 
-    public int dealerProfit(Players players, Dealer dealer) {
+    public int dealerProfit(final Players players, final Dealer dealer) {
         Map<Player, Integer> profitOfPlayer = players.calculateProfit(dealer);
         return profit(profitOfPlayer);
     }
 
-    public int playerProfit(Player player, Dealer dealer) {
+    public int playerProfit(final Player player, final Dealer dealer) {
         return player.calculateProfit(dealer);
     }
 
-    private int profit(Map<Player, Integer> profitOfPlayer) {
+    private int profit(final Map<Player, Integer> profitOfPlayer) {
         int sum = 0;
         for (Integer value : profitOfPlayer.values()) {
             sum += value;

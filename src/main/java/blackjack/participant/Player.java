@@ -12,17 +12,17 @@ public class Player extends Participant {
     private final Name name;
     private final Batting batting;
 
-    public static Player of(Name name, Batting batting) {
+    public static Player of(final Name name, final Batting batting) {
         return new Player(name, batting);
     }
 
-    private Player(Name name, Batting batting) {
+    private Player(final Name name, final Batting batting) {
         super();
         this.name = name;
         this.batting = batting;
     }
 
-    public Match calculateResult(Dealer dealer) {
+    public Match calculateResult(final Dealer dealer) {
         int playerSum = sum();
         int dealerSum = dealer.sum();
 
@@ -43,7 +43,7 @@ public class Player extends Participant {
         return DRAW;
     }
 
-    public int calculateProfit(Dealer dealer) {
+    public int calculateProfit(final Dealer dealer) {
         return batting.calculateProfit(calculateResult(dealer));
     }
 

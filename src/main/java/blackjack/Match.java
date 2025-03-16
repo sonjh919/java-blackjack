@@ -8,7 +8,7 @@ public enum Match {
 
     private final double rate;
 
-    Match(double rate) {
+    Match(final double rate) {
         this.rate = rate;
     }
 

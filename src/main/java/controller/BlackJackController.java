@@ -14,15 +14,15 @@ import service.BlackJackService;
 public class BlackJackController {
     BlackJackService blackJackService;
 
-    public BlackJackController(BlackJackService blackJackService) {
+    public BlackJackController(final BlackJackService blackJackService) {
         this.blackJackService = blackJackService;
     }
 
-    public Response<List<Name>> createNames(List<String> names) {
+    public Response<List<Name>> createNames(final List<String> names) {
         return new Response<>(blackJackService.createNames(names));
     }
 
-    public Response<Player> createBatting(Name name, int batting) {
+    public Response<Player> createBatting(final Name name, final int batting) {
         return new Response<>(blackJackService.createBatting(name, batting));
     }
 
@@ -34,27 +34,27 @@ public class BlackJackController {
         return new Response<>(blackJackService.createDealer());
     }
 
-    public Response<Hand> dealing(Participant participant, CardDeck standard) {
+    public Response<Hand> dealing(final Participant participant, final CardDeck standard) {
         return new Response<>(blackJackService.dealing(participant, standard));
     }
 
-    public Response<Boolean> hit(Player player, boolean isYes, CardDeck standard) {
+    public Response<Boolean> hit(final Player player, final boolean isYes, final CardDeck standard) {
         return new Response<>(blackJackService.hit(player, isYes, standard));
     }
 
-    public Response<Boolean> hit(Dealer dealer, CardDeck standard) {
+    public Response<Boolean> hit(final Dealer dealer, final CardDeck standard) {
         return new Response<>(blackJackService.hit(dealer, standard));
     }
 
-    public Response<Integer> sum(Participant participant) {
+    public Response<Integer> sum(final Participant participant) {
         return new Response<>(blackJackService.sum(participant));
     }
 
-    public Response<Integer> dealerProfit(Players players, Dealer dealer) {
+    public Response<Integer> dealerProfit(final Players players, final Dealer dealer) {
         return new Response<>(blackJackService.dealerProfit(players, dealer));
     }
 
-    public Response<Integer> playerProfit(Player player, Dealer dealer) {
+    public Response<Integer> playerProfit(final Player player, final Dealer dealer) {
         return new Response<>(blackJackService.playerProfit(player, dealer));
     }
 
