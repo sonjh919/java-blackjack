@@ -57,26 +57,14 @@ public class Hand {
         return sumWithAce() > BLACKJACK_NUMBER;
     }
 
-//    public void addCard(final Card card) {
-//        cards.add(card);
-//    }
-//
+    public boolean isBlackJackNumber() {
+        return sumWithAce() == BLACKJACK_NUMBER;
+    }
 
-//    public boolean isBlackJackNumber(){
-//        return sumWithAce() == BLACKJACK_NUMBER;
-//    }
-//
-//    public boolean isBlackJackCount() {
-//        return cards.size() == BLACKJACK_COUNT;
-//    }
-//
-//    public Hand getExceptHidden() {
-//        List<Card> firstOpenCards = new ArrayList<>(cards);
-//        firstOpenCards.removeLast();
-//
-//        return new Hand(firstOpenCards);
-//    }
-//
+    public boolean isBlackJackCount() {
+        return cards.size() == BLACKJACK_COUNT;
+    }
+
     public List<Card> getCards() {
         return cards;
     }

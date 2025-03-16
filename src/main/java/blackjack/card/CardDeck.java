@@ -15,8 +15,4 @@ public class CardDeck {
         return cards.removeFirst();
     }
 
-    public List<Card> getCards() {
-        return cards;
-    }
-
 }

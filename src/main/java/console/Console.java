@@ -1,8 +1,8 @@
 package console;
 
 import blackjack.Game;
+import blackjack.participant.Dealer;
 import blackjack.participant.Player;
-import protocol.Response;
 
 public class Console {
     private static Console CONSOLE = new Console();
@@ -44,7 +44,27 @@ public class Console {
     }
 
     public void displayHit(boolean isHit) {
-        output.displayHit(isHit);
+        output.hit(isHit);
+    }
+
+    public void displayDealerResult(Dealer dealer, int dealerResult) {
+        output.displayDealerResult(dealer, dealerResult);
+    }
+
+    public void displayProfit() {
+        output.displayProfit();
+    }
+
+    public void displayPlayerResult(Player player, int playersResult) {
+        output.displayPlayerResult(player, playersResult);
+    }
+
+    public void displayDealerProfit(int profit) {
+        output.displayDealerProfit(profit);
+    }
+
+    public void displayPlayerProfit(Player player, int profit) {
+        output.displayPlayerProfit(player, profit);
     }
 }
 

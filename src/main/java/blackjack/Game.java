@@ -2,7 +2,9 @@ package blackjack;
 
 import blackjack.card.CardDeck;
 import blackjack.participant.Dealer;
+import blackjack.participant.Player;
 import blackjack.participant.Players;
+import java.util.Map;
 
 public class Game {
     private static final int INITIAL_DEALING_COUNT = 2;
@@ -28,6 +30,16 @@ public class Game {
             dealer.hit(standard);
         }
         return this;
+    }
+
+    public int calculateDealerResult() {
+        Map<Player, Integer> profitOfPlayer = players.calculateProfit(dealer);
+
+        int sum = 0;
+        for (Integer value : profitOfPlayer.values()) {
+            sum += value;
+        }
+        return -sum;
     }
 
     public Players getPlayers() {

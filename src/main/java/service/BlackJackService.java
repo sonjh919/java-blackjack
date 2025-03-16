@@ -50,4 +50,20 @@ public class BlackJackService {
         }
         return canHit;
     }
+
+    public int sum(Dealer dealer) {
+        return dealer.sum();
+    }
+
+    public int sum(Player player) {
+        return player.sum();
+    }
+
+    public int dealerProfit(Game game) {
+        return game.calculateDealerResult();
+    }
+
+    public int playerProfit(Player player, Dealer dealer) {
+        return player.calculateProfit(dealer);
+    }
 }

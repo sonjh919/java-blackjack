@@ -10,7 +10,9 @@ import blackjack.card.Card;
 import blackjack.card.Hand;
 import blackjack.card.Rank;
 import blackjack.card.Suit;
+import blackjack.participant.Dealer;
 import blackjack.participant.Name;
+import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,16 +40,22 @@ public class Output {
                 .toList();
 
         System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names));
-        System.out.println("딜러: "  + printParticipantDeck(game.getDealer().getFirstCard()));
+        hand(game.getDealer());
+        System.out.print(NEW_LINE);
 
         for (Player player : game.getPlayers().getPlayers()) {
             hand(player);
+            System.out.print(NEW_LINE);
         }
+    }
+
+    public void hand(Dealer dealer){
+        System.out.print("딜러 카드: "  + printParticipantDeck(dealer.getFirstCard()));
     }
 
     public void hand(Player player) {
         System.out.printf("%s카드: ", player.getName().getName());
-        System.out.println(printParticipantDeck(player.getHand()));
+        System.out.print(printParticipantDeck(player.getHand()));
     }
 
     public String printParticipantDeck(final Hand hand) {
@@ -65,13 +73,37 @@ public class Output {
     }
 
     public void hit(String name) {
-        System.out.printf("%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)", name);
+        System.out.printf(NEW_LINE + "%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)", name);
         System.out.print(NEW_LINE);
     }
 
-    public void displayHit(boolean isHit) {
+    public void hit(boolean isHit) {
         if(isHit){
             System.out.println("딜러는 16이하라 한장의 카드를 더 받았습니다.");
         }
+    }
+
+    public void displayDealerResult(Dealer dealer, int dealerResult) {
+        System.out.print(NEW_LINE);
+        hand(dealer);
+        System.out.printf(" - 결과: %d", dealerResult);
+    }
+
+    public void displayPlayerResult(Player player, int playersResult) {
+        System.out.print(NEW_LINE);
+        hand(player);
+        System.out.printf(" - 결과: %d", playersResult);
+    }
+
+    public void displayProfit() {
+        System.out.println(NEW_LINE + "## 최종 수익");
+    }
+
+    public void displayDealerProfit(int profit) {
+        System.out.println("딜러: " + profit);
+    }
+
+    public void displayPlayerProfit(Player player, int profit) {
+        System.out.println(player.getName().getName() + ": " + profit);
     }
 }

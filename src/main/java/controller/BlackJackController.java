@@ -39,4 +39,20 @@ public class BlackJackController {
     public Response<Boolean> hit(Dealer dealer, CardDeck standard) {
         return new Response<>(blackJackService.hit(dealer, standard));
     }
+
+    public Response<Integer> sum(Dealer dealer) {
+        return new Response<>(blackJackService.sum(dealer));
+    }
+
+    public Response<Integer> sum(Player player) {
+        return new Response<>(blackJackService.sum(player));
+    }
+
+    public Response<Integer> dealerProfit(Game game) {
+        return new Response<>(blackJackService.dealerProfit(game));
+    }
+
+    public Response<Integer> playerProfit(Player player, Dealer dealer) {
+        return new Response<>(blackJackService.playerProfit(player, dealer));
+    }
 }

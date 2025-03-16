@@ -22,6 +22,14 @@ public abstract class Participant {
         return hand.sumWithAce();
     }
 
+    public boolean isBlackjack() {
+        return hand.isBlackJackNumber() && isBlackJackCount();
+    }
+
+    public boolean isBlackJackCount() {
+        return hand.isBlackJackCount();
+    }
+
     public Hand getHand() {
         return hand;
     }
