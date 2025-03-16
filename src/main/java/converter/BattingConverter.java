@@ -1,13 +1,11 @@
 package converter;
 
-import protocol.Request;
-
 public class BattingConverter implements Converter<Integer> {
     private static final int MIN_MONEY_RANGE = 0;
 
     @Override
-    public Integer convert(final Request<String> request) {
-        int batting = validateInteger(request.data());
+    public Integer convert(final String request) {
+        int batting = validateInteger(request);
         validateRange(batting);
 
         return batting;

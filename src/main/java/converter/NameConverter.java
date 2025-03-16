@@ -2,14 +2,13 @@ package converter;
 
 import java.util.Arrays;
 import java.util.List;
-import protocol.Request;
 
 public class NameConverter implements Converter<List<String>> {
     private static final int MAXIMUM_PLAYER_NUMBER = 6;
 
     @Override
-    public List<String> convert(final Request<String> request) {
-        List<String> names = Arrays.stream(request.data().split(","))
+    public List<String> convert(final String request) {
+        List<String> names = Arrays.stream(request.split(","))
                 .map(String::trim)
                 .toList();
 

@@ -1,15 +1,13 @@
 package converter;
 
-import protocol.Request;
-
 public class AnswerConverter implements Converter<Boolean> {
     @Override
-    public Boolean convert(final Request<String> request) {
-        if (request.data().equals("y")) {
+    public Boolean convert(final String request) {
+        if (request.equals("y")) {
             return true;
         }
 
-        if (request.data().equals("n")) {
+        if (request.equals("n")) {
             return false;
         }
 

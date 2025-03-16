@@ -8,7 +8,6 @@ import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import java.util.List;
-import protocol.Response;
 import service.BlackJackService;
 
 public class BlackJackController {
@@ -18,44 +17,44 @@ public class BlackJackController {
         this.blackJackService = blackJackService;
     }
 
-    public Response<List<Name>> createNames(final List<String> names) {
-        return new Response<>(blackJackService.createNames(names));
+    public List<Name> createNames(final List<String> names) {
+        return blackJackService.createNames(names);
     }
 
-    public Response<Player> createBatting(final Name name, final int batting) {
-        return new Response<>(blackJackService.createBatting(name, batting));
+    public Player createBatting(final Name name, final int batting) {
+        return blackJackService.createBatting(name, batting);
     }
 
-    public Response<CardDeck> createCardDeck() {
-        return new Response<>(blackJackService.createCardDeck());
+    public CardDeck createCardDeck() {
+        return blackJackService.createCardDeck();
     }
 
-    public Response<Dealer> createDealer() {
-        return new Response<>(blackJackService.createDealer());
+    public Dealer createDealer() {
+        return blackJackService.createDealer();
     }
 
-    public Response<Hand> dealing(final Participant participant, final CardDeck standard) {
-        return new Response<>(blackJackService.dealing(participant, standard));
+    public Hand dealing(final Participant participant, final CardDeck standard) {
+        return blackJackService.dealing(participant, standard);
     }
 
-    public Response<Boolean> hit(final Player player, final boolean isYes, final CardDeck standard) {
-        return new Response<>(blackJackService.hit(player, isYes, standard));
+    public Boolean hit(final Player player, final boolean isYes, final CardDeck standard) {
+        return blackJackService.hit(player, isYes, standard);
     }
 
-    public Response<Boolean> hit(final Dealer dealer, final CardDeck standard) {
-        return new Response<>(blackJackService.hit(dealer, standard));
+    public Boolean hit(final Dealer dealer, final CardDeck standard) {
+        return blackJackService.hit(dealer, standard);
     }
 
-    public Response<Integer> sum(final Participant participant) {
-        return new Response<>(blackJackService.sum(participant));
+    public int sum(final Participant participant) {
+        return blackJackService.sum(participant);
     }
 
-    public Response<Integer> dealerProfit(final Players players, final Dealer dealer) {
-        return new Response<>(blackJackService.dealerProfit(players, dealer));
+    public int dealerProfit(final Players players, final Dealer dealer) {
+        return blackJackService.dealerProfit(players, dealer);
     }
 
-    public Response<Integer> playerProfit(final Player player, final Dealer dealer) {
-        return new Response<>(blackJackService.playerProfit(player, dealer));
+    public int playerProfit(final Player player, final Dealer dealer) {
+        return blackJackService.playerProfit(player, dealer);
     }
 
 }
