@@ -5,7 +5,6 @@ import static blackjack.card.Rank.JACK;
 import static blackjack.card.Rank.KING;
 import static blackjack.card.Rank.QUEEN;
 
-import blackjack.Game;
 import blackjack.card.Card;
 import blackjack.card.Hand;
 import blackjack.card.Rank;
@@ -32,24 +31,22 @@ public class Output {
         System.out.printf("%s의 배팅 금액은?" + NEW_LINE, name);
     }
 
-    public void hand(Game game) {
-        List<String> names = game.getPlayers().getPlayers().stream()
-                .map(Player::getName)
-                .map(Name::getName)
-                .toList();
+    public void dealing(List<Name> names) {
+        System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names.stream().map(Name::getName).toList()));
+    }
 
-        System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names));
-        hand(game.getDealer());
-        System.out.print(NEW_LINE);
-
-        for (Player player : game.getPlayers().getPlayers()) {
-            hand(player);
-            System.out.print(NEW_LINE);
-        }
+    public void hand(Hand dealerHand) {
+        System.out.println("딜러: " + printParticipantDeck(dealerHand));
     }
 
     public void hand(Dealer dealer) {
         System.out.print("딜러 카드: " + printParticipantDeck(dealer.getFirstCard()));
+    }
+
+    public void hand(Name name, Hand playerHand) {
+        System.out.print(NEW_LINE);
+        System.out.printf("%s카드: ", name.getName());
+        System.out.print(printParticipantDeck(playerHand));
     }
 
     public void hand(Player player) {
@@ -66,8 +63,8 @@ public class Output {
     }
 
     private static String toSymbol(final Card card) {
-        Rank rank = card.getRank();
-        Suit suit = card.getSuit();
+        Rank rank = card.rank();
+        Suit suit = card.suit();
         return NUMBER_SYMBOL_MAP.getOrDefault(rank, String.valueOf(rank.getScore())) + suit;
     }
 
@@ -78,7 +75,7 @@ public class Output {
 
     public void hit(boolean isHit) {
         if (isHit) {
-            System.out.println(NEW_LINE + "딜러는 16이하라 한장의 카드를 더 받았습니다.");
+            System.out.println(NEW_LINE + NEW_LINE + "딜러는 16이하라 한장의 카드를 더 받았습니다.");
         }
     }
 
@@ -95,7 +92,7 @@ public class Output {
     }
 
     public void displayProfit() {
-        System.out.println(NEW_LINE + "## 최종 수익");
+        System.out.println(NEW_LINE + NEW_LINE + "## 최종 수익");
     }
 
     public void displayDealerProfit(int profit) {
@@ -105,4 +102,5 @@ public class Output {
     public void displayPlayerProfit(Player player, int profit) {
         System.out.println(player.getName().getName() + ": " + profit);
     }
+
 }

@@ -1,6 +1,9 @@
-import blackjack.Game;
+import blackjack.card.CardDeck;
+import blackjack.card.Hand;
+import blackjack.participant.Dealer;
 import blackjack.participant.Name;
 import blackjack.participant.Player;
+import blackjack.participant.Players;
 import console.Console;
 import controller.BlackJackController;
 import converter.AnswerConverter;
@@ -37,15 +40,28 @@ public class Application {
             players.add(playerResponse.data());
         }
 
-        // 3. 게임 생성
-        Response<Game> gameResponse = blackJackController.createGame(players); //todo: Request wrapping & converter
-        Game game = gameResponse.data();
+        // 3. 카드 생성
+        Response<CardDeck> cardDeckResponse = blackJackController.createCardDeck();
+        CardDeck standard = cardDeckResponse.data();
 
-        // 4. 카드 2장 나눠주기
-        Response<Game> dealingResponse = blackJackController.dealing(game); //todo: dto, 한번에보내기 vs 나눠서보내기
-        console.displayHand(dealingResponse.data());
+        // 4. 딜러 생성
+        Response<Dealer> dealerResponse = blackJackController.createDealer();
+        Dealer dealer = dealerResponse.data();
 
-        // 5. 플레이어 카드받기
+        // 4. 카드 2장 나눠주기 intro
+        console.displayDealing(names);
+
+        // 5. 딜러 첫 카드 받기
+        Response<Hand> dealingDealerResponse = blackJackController.dealing(dealer, standard);
+        console.displayHand(dealingDealerResponse.data());
+
+        // 5. 플레이어 첫 카드 받기
+        for (Player player : players) {
+            Response<Hand> dealingPlayerResponse = blackJackController.dealing(player, standard);
+            console.displayHand(player.getName(), dealingPlayerResponse.data());
+        }
+
+        // 6. 플레이어 카드받기
         for (Player player : players) {
             while (true) {
                 console.askHit(player.getName().getName());
@@ -54,7 +70,7 @@ public class Application {
                 boolean isYes = new AnswerConverter().convert(answerRequest); //todo: converter 중간 계층으로 빼기..?
 
                 Response<Boolean> stop = blackJackController.hit(player, isYes,
-                        game.getStandard()); //fixme: 에러처리 & standard 넘기기 싫음...
+                        standard); //fixme: 에러처리 & standard 넘기기 싫음...
                 console.displayHand(player);
 
                 if (stop.data() || !isYes) {
@@ -63,30 +79,30 @@ public class Application {
             }
         }
 
-        // 6. 딜러 카드받기
-        Response<Boolean> isHit = blackJackController.hit(game.getDealer(), game.getStandard());
+        // 7. 딜러 카드받기
+        Response<Boolean> isHit = blackJackController.hit(dealer, standard);
         console.displayHit(isHit.data());
 
-        // 7. 딜러 합계 출력
-        Response<Integer> dealerSumResponse = blackJackController.sum(game.getDealer());
-        console.displayDealerResult(game.getDealer(), dealerSumResponse.data());
+        // 8. 딜러 합계 출력
+        Response<Integer> dealerSumResponse = blackJackController.sum(dealer);
+        console.displayDealerResult(dealer, dealerSumResponse.data());
 
-        // 8. 플레이어 합계 출력
+        // 9. 플레이어 합계 출력
         for (Player player : players) {
             Response<Integer> playerSumResponse = blackJackController.sum(player);
             console.displayPlayerResult(player, playerSumResponse.data());
         }
 
-        // 수익 출력 intro
+        // 10. 수익 출력 intro
         console.displayProfit();
 
-        // 9. 딜러 수익 출력
-        Response<Integer> dealerProfitResponse = blackJackController.dealerProfit(game.getPlayers(), game.getDealer());
+        // 11. 딜러 수익 출력
+        Response<Integer> dealerProfitResponse = blackJackController.dealerProfit(Players.from(players), dealer);
         console.displayDealerProfit(dealerProfitResponse.data());
 
-        // 10. 플레이어 결과 출력
+        // 12. 플레이어 결과 출력
         for (Player player : players) {
-            Response<Integer> playerProfitResponse = blackJackController.playerProfit(player, game.getDealer());
+            Response<Integer> playerProfitResponse = blackJackController.playerProfit(player, dealer);
             console.displayPlayerProfit(player, playerProfitResponse.data());
         }
 

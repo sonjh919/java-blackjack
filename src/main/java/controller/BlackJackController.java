@@ -1,7 +1,7 @@
 package controller;
 
-import blackjack.Game;
 import blackjack.card.CardDeck;
+import blackjack.card.Hand;
 import blackjack.participant.Dealer;
 import blackjack.participant.Name;
 import blackjack.participant.Participant;
@@ -26,12 +26,16 @@ public class BlackJackController {
         return new Response<>(blackJackService.createBatting(name, batting));
     }
 
-    public Response<Game> createGame(List<Player> players) {
-        return new Response<>(blackJackService.createGame(players));
+    public Response<CardDeck> createCardDeck() {
+        return new Response<>(blackJackService.createCardDeck());
     }
 
-    public Response<Game> dealing(Game game) {
-        return new Response<>(blackJackService.dealing(game));
+    public Response<Dealer> createDealer() {
+        return new Response<>(blackJackService.createDealer());
+    }
+
+    public Response<Hand> dealing(Participant participant, CardDeck standard) {
+        return new Response<>(blackJackService.dealing(participant, standard));
     }
 
     public Response<Boolean> hit(Player player, boolean isYes, CardDeck standard) {
@@ -53,4 +57,5 @@ public class BlackJackController {
     public Response<Integer> playerProfit(Player player, Dealer dealer) {
         return new Response<>(blackJackService.playerProfit(player, dealer));
     }
+
 }

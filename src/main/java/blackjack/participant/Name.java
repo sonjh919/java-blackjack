@@ -1,7 +1,7 @@
 package blackjack.participant;
 
 public class Name {
-    private String name;
+    private final String name;
 
     public static Name from(String name) {
         return new Name(name);

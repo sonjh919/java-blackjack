@@ -1,8 +1,8 @@
 package service;
 
-import blackjack.Game;
 import blackjack.card.CardDeck;
 import blackjack.card.CardDeckFactory;
+import blackjack.card.Hand;
 import blackjack.participant.Batting;
 import blackjack.participant.Dealer;
 import blackjack.participant.Name;
@@ -24,18 +24,23 @@ public class BlackJackService {
         return Player.of(name, Batting.from(batting));
     }
 
-    public Game createGame(List<Player> players) {
-        CardDeck standard = setUpCardDeck();
-        return Game.of(Players.from(players), Dealer.create(), standard);
-    }
-
-    private CardDeck setUpCardDeck() {
+    public CardDeck createCardDeck() {
         CardDeckFactory cardDeckFactory = new CardDeckFactory();
         return cardDeckFactory.create();
     }
 
-    public Game dealing(Game game) {
-        return game.dealing();
+    public Dealer createDealer() {
+        return Dealer.create();
+    }
+
+    public Hand dealing(Participant participant, CardDeck standard) {
+        final int initialDealingCount = 2;
+
+        for (int i = 0; i < initialDealingCount; i++) {
+            participant.hit(standard);
+        }
+
+        return participant.getFirstCard();
     }
 
     public boolean hit(Player player, boolean isYes, CardDeck standard) {
@@ -73,4 +78,5 @@ public class BlackJackService {
         }
         return -sum;
     }
+
 }

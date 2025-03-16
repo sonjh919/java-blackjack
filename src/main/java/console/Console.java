@@ -1,14 +1,16 @@
 package console;
 
-import blackjack.Game;
+import blackjack.card.Hand;
 import blackjack.participant.Dealer;
+import blackjack.participant.Name;
 import blackjack.participant.Player;
+import java.util.List;
 
 public class Console {
-    private static Console CONSOLE = new Console();
+    private static final Console CONSOLE = new Console();
 
-    private Input input;
-    private Output output;
+    private final Input input;
+    private final Output output;
 
     public static Console getInstance() {
         return CONSOLE;
@@ -31,8 +33,16 @@ public class Console {
         output.batting(name);
     }
 
-    public void displayHand(Game game) {
-        output.hand(game);
+    public void displayDealing(List<Name> names) {
+        output.dealing(names);
+    }
+
+    public void displayHand(Hand dealerHand) {
+        output.hand(dealerHand);
+    }
+
+    public void displayHand(Name name, Hand playerHand) {
+        output.hand(name, playerHand);
     }
 
     public void displayHand(Player player) {
