@@ -5,7 +5,6 @@ import blackjack.participant.Name;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import console.Console;
-import controller.BlackJackController;
 import converter.AnswerConverter;
 import converter.BattingConverter;
 import converter.NameConverter;
@@ -17,12 +16,12 @@ public class Application {
     public static void main(String[] args) {
         // init
         Console console = Console.getInstance();
-        BlackJackController blackJackController = new BlackJackController(new BlackJackService());
+        BlackJackService blackJackService = new BlackJackService();
 
         // 1. 이름입력
         console.askNames();
         String nameRequest = console.read();
-        List<Name> names = blackJackController.createNames(new NameConverter().convert(nameRequest));
+        List<Name> names = blackJackService.createNames(new NameConverter().convert(nameRequest));
 
         // 2. 배팅입력 및 플레이어 생성
         List<Player> players = new ArrayList<>();
@@ -30,28 +29,28 @@ public class Application {
         for (Name name : names) {
             console.askBatting(name.getName());
             String battingRequest = console.read();
-            Player player = blackJackController.createBatting(name,
+            Player player = blackJackService.createBatting(name,
                     new BattingConverter().convert(battingRequest));
 
             players.add(player);
         }
 
         // 3. 카드 생성
-        CardDeck standard = blackJackController.createCardDeck();
+        CardDeck standard = blackJackService.createCardDeck();
 
         // 4. 딜러 생성
-        Dealer dealer = blackJackController.createDealer();
+        Dealer dealer = blackJackService.createDealer();
 
         // 4. 카드 2장 나눠주기 intro
         console.displayDealing(names);
 
         // 5. 딜러 첫 카드 받기
-        Hand dealingDealer = blackJackController.dealing(dealer, standard);
+        Hand dealingDealer = blackJackService.dealing(dealer, standard);
         console.displayHand(dealingDealer);
 
         // 5. 플레이어 첫 카드 받기
         for (Player player : players) {
-            Hand dealingPlayer = blackJackController.dealing(player, standard);
+            Hand dealingPlayer = blackJackService.dealing(player, standard);
             console.displayHand(player.getName(), dealingPlayer);
         }
 
@@ -63,7 +62,7 @@ public class Application {
                 String answerRequest = console.read();
                 boolean isYes = new AnswerConverter().convert(answerRequest);
 
-                boolean isStop = blackJackController.hit(player, isYes,
+                boolean isStop = blackJackService.hit(player, isYes,
                         standard);
                 console.displayHand(player);
 
@@ -74,16 +73,16 @@ public class Application {
         }
 
         // 7. 딜러 카드받기
-        boolean isHit = blackJackController.hit(dealer, standard);
+        boolean isHit = blackJackService.hit(dealer, standard);
         console.displayHit(isHit);
 
         // 8. 딜러 합계 출력
-        int dealerSum = blackJackController.sum(dealer);
+        int dealerSum = blackJackService.sum(dealer);
         console.displayDealerResult(dealer, dealerSum);
 
         // 9. 플레이어 합계 출력
         for (Player player : players) {
-            int playerSum = blackJackController.sum(player);
+            int playerSum = blackJackService.sum(player);
             console.displayPlayerResult(player, playerSum);
         }
 
@@ -91,12 +90,12 @@ public class Application {
         console.displayProfit();
 
         // 11. 딜러 수익 출력
-        int dealerProfit = blackJackController.dealerProfit(Players.from(players), dealer);
+        int dealerProfit = blackJackService.dealerProfit(Players.from(players), dealer);
         console.displayDealerProfit(dealerProfit);
 
         // 12. 플레이어 결과 출력
         for (Player player : players) {
-            int playerProfit = blackJackController.playerProfit(player, dealer);
+            int playerProfit = blackJackService.playerProfit(player, dealer);
             console.displayPlayerProfit(player, playerProfit);
         }
 
