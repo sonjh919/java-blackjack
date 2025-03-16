@@ -3,7 +3,7 @@ package blackjack.participant;
 public class Name {
     private String name;
 
-    public static Name from(String name){
+    public static Name from(String name) {
         return new Name(name);
     }
 

@@ -13,7 +13,7 @@ public class Hand {
     private final List<Card> cards;
 
 
-    public static Hand create(){
+    public static Hand create() {
         return new Hand();
     }
 

@@ -8,11 +8,11 @@ import static blackjack.Match.WIN;
 import blackjack.Match;
 import blackjack.card.Hand;
 
-public class Player extends Participant{
+public class Player extends Participant {
     private final Name name;
     private final Batting batting;
 
-    public static Player of(Name name, Batting batting){
+    public static Player of(Name name, Batting batting) {
         return new Player(name, batting);
     }
 

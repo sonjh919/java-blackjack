@@ -14,7 +14,7 @@ public class Game {
 
     private final CardDeck standard;
 
-    public static Game of(Players players, Dealer dealer, CardDeck standard){
+    public static Game of(Players players, Dealer dealer, CardDeck standard) {
         return new Game(players, dealer, standard);
     }
 

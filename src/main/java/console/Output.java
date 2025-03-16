@@ -12,7 +12,6 @@ import blackjack.card.Rank;
 import blackjack.card.Suit;
 import blackjack.participant.Dealer;
 import blackjack.participant.Name;
-import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class Output {
     private static final Map<Rank, String> NUMBER_SYMBOL_MAP = new HashMap<>(
             Map.of(ACE, "A", QUEEN, "Q", JACK, "J", KING, "K"));
 
-    public void name(){
+    public void name() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요.(쉼표 기준으로 분리)");
     }
 
@@ -49,8 +48,8 @@ public class Output {
         }
     }
 
-    public void hand(Dealer dealer){
-        System.out.print("딜러 카드: "  + printParticipantDeck(dealer.getFirstCard()));
+    public void hand(Dealer dealer) {
+        System.out.print("딜러 카드: " + printParticipantDeck(dealer.getFirstCard()));
     }
 
     public void hand(Player player) {
@@ -78,7 +77,7 @@ public class Output {
     }
 
     public void hit(boolean isHit) {
-        if(isHit){
+        if (isHit) {
             System.out.println("딜러는 16이하라 한장의 카드를 더 받았습니다.");
         }
     }

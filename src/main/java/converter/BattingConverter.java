@@ -7,7 +7,7 @@ public class BattingConverter implements Converter<Integer> {
 
     @Override
     public Integer convert(Request<String> request) {
-        int batting = validateInteger(request.getData());
+        int batting = validateInteger(request.data());
         validateRange(batting);
 
         return batting;
@@ -22,7 +22,7 @@ public class BattingConverter implements Converter<Integer> {
     }
 
     private void validateRange(int batting) {
-        if(batting <= MIN_MONEY_RANGE){
+        if (batting <= MIN_MONEY_RANGE) {
             throw new IllegalArgumentException("[ERROR] 알맞은 금액의 범위를 입력해주세요");
         }
     }

@@ -10,7 +10,7 @@ public class Console {
     private Input input;
     private Output output;
 
-    public static Console getInstance(){
+    public static Console getInstance() {
         return CONSOLE;
     }
 
@@ -19,15 +19,15 @@ public class Console {
         this.output = new Output();
     }
 
-    public String read(){
+    public String read() {
         return input.read();
     }
 
-    public void askNames(){
+    public void askNames() {
         output.name();
     }
 
-    public void askBatting(String name){
+    public void askBatting(String name) {
         output.batting(name);
     }
 

@@ -5,7 +5,7 @@ import blackjack.Match;
 public class Batting {
     private final int batting;
 
-    public static Batting from(int batting){
+    public static Batting from(int batting) {
         return new Batting(batting);
     }
 
