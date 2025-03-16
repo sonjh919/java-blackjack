@@ -23,7 +23,7 @@ public class Application {
 
         // 1. 이름입력
         console.askNames();
-        Request<String> nameRequest = new Request<>(console.read());
+        Request<String> nameRequest = console.read();
         Response<List<Name>> nameResponse = blackJackController.createNames(new NameConverter().convert(nameRequest));
 
         List<Name> names = nameResponse.data();
@@ -33,7 +33,7 @@ public class Application {
 
         for (Name name : names) {
             console.askBatting(name.getName());
-            Request<String> battingRequest = new Request<>(console.read());
+            Request<String> battingRequest = console.read();
             Response<Player> playerResponse = blackJackController.createBatting(name,
                     new BattingConverter().convert(battingRequest));
 
@@ -66,7 +66,7 @@ public class Application {
             while (true) {
                 console.askHit(player.getName().getName());
 
-                Request<String> answerRequest = new Request<>(console.read());
+                Request<String> answerRequest = console.read();
                 boolean isYes = new AnswerConverter().convert(answerRequest);
 
                 Response<Boolean> stop = blackJackController.hit(player, isYes,

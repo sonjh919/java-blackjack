@@ -5,6 +5,7 @@ import blackjack.participant.Dealer;
 import blackjack.participant.Name;
 import blackjack.participant.Player;
 import java.util.List;
+import protocol.Request;
 
 public class Console {
     private static final Console CONSOLE = new Console();
@@ -21,7 +22,7 @@ public class Console {
         this.output = new Output();
     }
 
-    public String read() {
+    public Request<String> read() {
         return input.read();
     }
 

@@ -1,6 +1,7 @@
 package console;
 
 import java.util.Scanner;
+import protocol.Request;
 
 public class Input {
     Scanner scanner;
@@ -9,7 +10,7 @@ public class Input {
         this.scanner = new Scanner(System.in);
     }
 
-    public String read() {
-        return scanner.nextLine();
+    public Request<String> read() {
+        return new Request<>(scanner.nextLine());
     }
 }
