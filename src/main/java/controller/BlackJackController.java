@@ -4,6 +4,7 @@ import blackjack.Game;
 import blackjack.card.CardDeck;
 import blackjack.participant.Dealer;
 import blackjack.participant.Name;
+import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import java.util.List;
 import protocol.Response;
@@ -40,12 +41,8 @@ public class BlackJackController {
         return new Response<>(blackJackService.hit(dealer, standard));
     }
 
-    public Response<Integer> sum(Dealer dealer) {
-        return new Response<>(blackJackService.sum(dealer));
-    }
-
-    public Response<Integer> sum(Player player) {
-        return new Response<>(blackJackService.sum(player));
+    public Response<Integer> sum(Participant participant) {
+        return new Response<>(blackJackService.sum(participant));
     }
 
     public Response<Integer> dealerProfit(Game game) {

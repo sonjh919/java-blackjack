@@ -6,6 +6,7 @@ import blackjack.card.CardDeckFactory;
 import blackjack.participant.Batting;
 import blackjack.participant.Dealer;
 import blackjack.participant.Name;
+import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import java.util.List;
@@ -51,12 +52,8 @@ public class BlackJackService {
         return canHit;
     }
 
-    public int sum(Dealer dealer) {
-        return dealer.sum();
-    }
-
-    public int sum(Player player) {
-        return player.sum();
+    public int sum(Participant participant) {
+        return participant.sum();
     }
 
     public int dealerProfit(Game game) {
@@ -66,4 +63,5 @@ public class BlackJackService {
     public int playerProfit(Player player, Dealer dealer) {
         return player.calculateProfit(dealer);
     }
+
 }
