@@ -35,7 +35,7 @@ public class Application {
             console.askBatting(name.getName());
             Request<String> battingRequest = new Request<>(console.read());
             Response<Player> playerResponse = blackJackController.createBatting(name,
-                    new BattingConverter().convert(battingRequest)); //todo: dto
+                    new BattingConverter().convert(battingRequest));
 
             players.add(playerResponse.data());
         }
@@ -67,10 +67,10 @@ public class Application {
                 console.askHit(player.getName().getName());
 
                 Request<String> answerRequest = new Request<>(console.read());
-                boolean isYes = new AnswerConverter().convert(answerRequest); //todo: converter 중간 계층으로 빼기..?
+                boolean isYes = new AnswerConverter().convert(answerRequest);
 
                 Response<Boolean> stop = blackJackController.hit(player, isYes,
-                        standard); //fixme: 에러처리 & standard 넘기기 싫음...
+                        standard);
                 console.displayHand(player);
 
                 if (stop.data() || !isYes) {
