@@ -20,7 +20,7 @@ public class BlackJack {
                 .toList();
     }
 
-    public Player createBatting(final Name name, final int batting) {
+    public Player createPlayer(final Name name, final int batting) {
         return Player.of(name, Batting.from(batting));
     }
 

@@ -29,7 +29,7 @@ public class Application {
         for (Name name : names) {
             console.askBatting(name.getName());
             String battingRequest = console.read();
-            Player player = blackJack.createBatting(name,
+            Player player = blackJack.createPlayer(name,
                     new BattingConverter().convert(battingRequest));
 
             players.add(player);
