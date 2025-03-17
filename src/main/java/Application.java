@@ -2,7 +2,6 @@ import blackjack.BlackJack;
 import blackjack.card.CardDeck;
 import blackjack.card.Hand;
 import blackjack.participant.Dealer;
-import blackjack.participant.Name;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import console.Console;
