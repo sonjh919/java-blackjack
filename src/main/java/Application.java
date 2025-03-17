@@ -1,3 +1,4 @@
+import blackjack.BlackJack;
 import blackjack.card.CardDeck;
 import blackjack.card.Hand;
 import blackjack.participant.Dealer;
@@ -10,7 +11,6 @@ import converter.BattingConverter;
 import converter.NameConverter;
 import java.util.ArrayList;
 import java.util.List;
-import blackjack.BlackJack;
 
 public class Application {
     public static void main(String[] args) {
@@ -28,9 +28,8 @@ public class Application {
 
         for (Name name : names) {
             console.askBatting(name.getName());
-            String battingRequest = console.read();
             Player player = blackJack.createPlayer(name,
-                    new BattingConverter().convert(battingRequest));
+                    new BattingConverter().convert(console.read()));
 
             players.add(player);
         }
@@ -58,9 +57,7 @@ public class Application {
         for (Player player : players) {
             while (true) {
                 console.askHit(player.getName().getName());
-
-                String answerRequest = console.read();
-                boolean isYes = new AnswerConverter().convert(answerRequest);
+                boolean isYes = new AnswerConverter().convert(console.read());
 
                 boolean isStop = blackJack.hit(player, isYes,
                         standard);
