@@ -1,7 +1,6 @@
 import blackjack.card.CardDeck;
 import blackjack.card.Hand;
 import blackjack.participant.Dealer;
-import blackjack.participant.Name;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
 import console.Console;
@@ -19,22 +18,19 @@ public class Application {
     public static void main(String[] args) {
         // init
         Console console = Console.getInstance();
-        BlackJackController blackJackController = new BlackJackController(new BlackJackService());
+        BlackJackController blackJackController = new BlackJackController(new BlackJackService()); //todo: dto
 
         // 1. 이름입력
         console.askNames();
-        Request<String> nameRequest = console.read();
-        Response<List<Name>> nameResponse = blackJackController.createNames(new NameConverter().convert(nameRequest));
-
-        List<Name> names = nameResponse.data();
+        List<String> names = new NameConverter().convert(console.read());
 
         // 2. 배팅입력 및 플레이어 생성
         List<Player> players = new ArrayList<>();
 
-        for (Name name : names) {
-            console.askBatting(name.getName());
+        for (String name : names) {
+            console.askBatting(name);
             Request<String> battingRequest = console.read();
-            Response<Player> playerResponse = blackJackController.createBatting(name,
+            Response<Player> playerResponse = blackJackController.createPlayer(name,
                     new BattingConverter().convert(battingRequest));
 
             players.add(playerResponse.data());

@@ -3,11 +3,9 @@ package controller;
 import blackjack.card.CardDeck;
 import blackjack.card.Hand;
 import blackjack.participant.Dealer;
-import blackjack.participant.Name;
 import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
-import java.util.List;
 import protocol.Response;
 import service.BlackJackService;
 
@@ -18,12 +16,8 @@ public class BlackJackController {
         this.blackJackService = blackJackService;
     }
 
-    public Response<List<Name>> createNames(final List<String> names) {
-        return new Response<>(blackJackService.createNames(names));
-    }
-
-    public Response<Player> createBatting(final Name name, final int batting) {
-        return new Response<>(blackJackService.createBatting(name, batting));
+    public Response<Player> createPlayer(final String name, final int batting) {
+        return new Response<>(blackJackService.createPlayer(name, batting));
     }
 
     public Response<CardDeck> createCardDeck() {

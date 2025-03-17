@@ -9,19 +9,12 @@ import blackjack.participant.Name;
 import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
-import java.util.List;
 import java.util.Map;
 
 public class BlackJackService {
 
-    public List<Name> createNames(final List<String> names) {
-        return names.stream()
-                .map(Name::from)
-                .toList();
-    }
-
-    public Player createBatting(final Name name, final int batting) {
-        return Player.of(name, Batting.from(batting));
+    public Player createPlayer(final String name, final int batting) {
+        return Player.of(Name.from(name), Batting.from(batting));
     }
 
     public CardDeck createCardDeck() {
