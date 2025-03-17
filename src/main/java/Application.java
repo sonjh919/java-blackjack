@@ -10,6 +10,7 @@ import converter.BattingConverter;
 import converter.NameConverter;
 import java.util.ArrayList;
 import java.util.List;
+import protocol.Request;
 import protocol.Response;
 import service.BlackJackService;
 
@@ -21,15 +22,17 @@ public class Application {
 
         // 1. 이름입력
         console.askNames();
-        List<String> names = new NameConverter().convert(console.read());
+        Request<String> namesRequest = console.read();
+        List<String> names = new NameConverter().convert(namesRequest);
 
         // 2. 배팅입력 및 플레이어 생성
         List<Player> players = new ArrayList<>();
 
         for (String name : names) {
             console.askBatting(name);
+            Request<String> battingRequest = console.read();
             Response<Player> playerResponse = blackJackController.createPlayer(name,
-                    new BattingConverter().convert(console.read()));
+                    new BattingConverter().convert(battingRequest));
 
             players.add(playerResponse.data());
         }
@@ -60,7 +63,8 @@ public class Application {
             while (true) {
                 console.askHit(player.getName().getName());
 
-                boolean isYes = new AnswerConverter().convert(console.read());
+                Request<String> answerRequest = console.read();
+                boolean isYes = new AnswerConverter().convert(answerRequest);
                 Response<Boolean> isStop = blackJackController.hit(player, isYes,
                         standard);
                 console.displayHand(player);

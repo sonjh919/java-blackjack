@@ -10,6 +10,15 @@ public abstract class Participant {
         this.hand = Hand.create();
     }
 
+    public Hand dealing(CardDeck standard) {
+        final int initialDealingCount = 2;
+        for (int i = 0; i < initialDealingCount; i++) {
+            hit(standard);
+        }
+
+        return getFirstCard();
+    }
+
     public void hit(final CardDeck standard) {
         hand.addCard(standard.hitCard());
     }
@@ -34,5 +43,5 @@ public abstract class Participant {
         return hand;
     }
 
-    public abstract Hand getFirstCard();
+    protected abstract Hand getFirstCard();
 }

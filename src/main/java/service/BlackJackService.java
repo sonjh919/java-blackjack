@@ -26,14 +26,8 @@ public class BlackJackService {
         return Dealer.create();
     }
 
-    public Hand dealing(final Participant participant, final CardDeck standard) { //todo: move participant
-        final int initialDealingCount = 2;
-
-        for (int i = 0; i < initialDealingCount; i++) {
-            participant.hit(standard);
-        }
-
-        return participant.getFirstCard();
+    public Hand dealing(final Participant participant, final CardDeck standard) {
+        return participant.dealing(standard);
     }
 
     public boolean hit(final Player player, final boolean isYes, final CardDeck standard) { //todo: move player
