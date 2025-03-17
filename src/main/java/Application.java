@@ -29,9 +29,8 @@ public class Application {
 
         for (String name : names) {
             console.askBatting(name);
-            Request<String> battingRequest = console.read();
             Response<Player> playerResponse = blackJackController.createPlayer(name,
-                    new BattingConverter().convert(battingRequest));
+                    new BattingConverter().convert(console.read()));
 
             players.add(playerResponse.data());
         }
@@ -62,14 +61,12 @@ public class Application {
             while (true) {
                 console.askHit(player.getName().getName());
 
-                Request<String> answerRequest = console.read();
-                boolean isYes = new AnswerConverter().convert(answerRequest);
-
-                Response<Boolean> stop = blackJackController.hit(player, isYes,
+                boolean isYes = new AnswerConverter().convert(console.read());
+                Response<Boolean> isStop = blackJackController.hit(player, isYes,
                         standard);
                 console.displayHand(player);
 
-                if (stop.data() || !isYes) {
+                if (isStop.data() || !isYes) {
                     break;
                 }
             }
