@@ -10,7 +10,6 @@ import converter.BattingConverter;
 import converter.NameConverter;
 import java.util.ArrayList;
 import java.util.List;
-import protocol.Request;
 import protocol.Response;
 import service.BlackJackService;
 

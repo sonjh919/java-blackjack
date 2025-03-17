@@ -26,7 +26,7 @@ public class BlackJackService {
         return Dealer.create();
     }
 
-    public Hand dealing(final Participant participant, final CardDeck standard) {
+    public Hand dealing(final Participant participant, final CardDeck standard) { //todo: move participant
         final int initialDealingCount = 2;
 
         for (int i = 0; i < initialDealingCount; i++) {
@@ -36,14 +36,14 @@ public class BlackJackService {
         return participant.getFirstCard();
     }
 
-    public boolean hit(final Player player, final boolean isYes, final CardDeck standard) {
+    public boolean hit(final Player player, final boolean isYes, final CardDeck standard) { //todo: move player
         if (isYes) {
             player.hit(standard);
         }
         return player.isBust();
     }
 
-    public boolean hit(final Dealer dealer, final CardDeck standard) {
+    public boolean hit(final Dealer dealer, final CardDeck standard) { //todo: move dealer
         boolean canHit = dealer.isUnderThreshold();
         while (dealer.isUnderThreshold()) {
             dealer.hit(standard);
@@ -55,12 +55,12 @@ public class BlackJackService {
         return participant.sum();
     }
 
-    public int dealerProfit(final Players players, final Dealer dealer) {
+    public int dealerProfit(final Players players, final Dealer dealer) { //todo: move players
         Map<Player, Integer> profitOfPlayer = players.calculateProfit(dealer);
         return profit(profitOfPlayer);
     }
 
-    public int playerProfit(final Player player, final Dealer dealer) {
+    public int playerProfit(final Player player, final Dealer dealer) { //todo: move player
         return player.calculateProfit(dealer);
     }
 
