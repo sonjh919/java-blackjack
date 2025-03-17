@@ -9,7 +9,6 @@ import blackjack.participant.Name;
 import blackjack.participant.Participant;
 import blackjack.participant.Player;
 import blackjack.participant.Players;
-import java.util.Map;
 
 public class BlackJackService {
 
@@ -30,14 +29,14 @@ public class BlackJackService {
         return participant.dealing(standard);
     }
 
-    public boolean hit(final Player player, final boolean isYes, final CardDeck standard) { //todo: move player
+    public boolean hit(final Player player, final boolean isYes, final CardDeck standard) {
         if (isYes) {
             player.hit(standard);
         }
         return player.isBust();
     }
 
-    public boolean hit(final Dealer dealer, final CardDeck standard) { //todo: move dealer
+    public boolean hit(final Dealer dealer, final CardDeck standard) {
         boolean canHit = dealer.isUnderThreshold();
         while (dealer.isUnderThreshold()) {
             dealer.hit(standard);
@@ -49,21 +48,12 @@ public class BlackJackService {
         return participant.sum();
     }
 
-    public int dealerProfit(final Players players, final Dealer dealer) { //todo: move players
-        Map<Player, Integer> profitOfPlayer = players.calculateProfit(dealer);
-        return profit(profitOfPlayer);
+    public int dealerProfit(final Players players, final Dealer dealer) {
+        return dealer.calculateProfit(players);
     }
 
-    public int playerProfit(final Player player, final Dealer dealer) { //todo: move player
+    public int playerProfit(final Player player, final Dealer dealer) {
         return player.calculateProfit(dealer);
-    }
-
-    private int profit(final Map<Player, Integer> profitOfPlayer) {
-        int sum = 0;
-        for (Integer value : profitOfPlayer.values()) {
-            sum += value;
-        }
-        return -sum;
     }
 
 }
