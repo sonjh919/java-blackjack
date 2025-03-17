@@ -1,4 +1,4 @@
-package service;
+package blackjack;
 
 import blackjack.card.CardDeck;
 import blackjack.card.CardDeckFactory;
@@ -12,7 +12,7 @@ import blackjack.participant.Players;
 import java.util.List;
 import java.util.Map;
 
-public class BlackJackService {
+public class BlackJack {
 
     public List<Name> createNames(final List<String> names) {
         return names.stream()

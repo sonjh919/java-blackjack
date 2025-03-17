@@ -10,18 +10,18 @@ import converter.BattingConverter;
 import converter.NameConverter;
 import java.util.ArrayList;
 import java.util.List;
-import service.BlackJackService;
+import blackjack.BlackJack;
 
 public class Application {
     public static void main(String[] args) {
         // init
         Console console = Console.getInstance();
-        BlackJackService blackJackService = new BlackJackService();
+        BlackJack blackJack = new BlackJack();
 
         // 1. 이름입력
         console.askNames();
         String nameRequest = console.read();
-        List<Name> names = blackJackService.createNames(new NameConverter().convert(nameRequest));
+        List<Name> names = blackJack.createNames(new NameConverter().convert(nameRequest));
 
         // 2. 배팅입력 및 플레이어 생성
         List<Player> players = new ArrayList<>();
@@ -29,28 +29,28 @@ public class Application {
         for (Name name : names) {
             console.askBatting(name.getName());
             String battingRequest = console.read();
-            Player player = blackJackService.createBatting(name,
+            Player player = blackJack.createBatting(name,
                     new BattingConverter().convert(battingRequest));
 
             players.add(player);
         }
 
         // 3. 카드 생성
-        CardDeck standard = blackJackService.createCardDeck();
+        CardDeck standard = blackJack.createCardDeck();
 
         // 4. 딜러 생성
-        Dealer dealer = blackJackService.createDealer();
+        Dealer dealer = blackJack.createDealer();
 
         // 4. 카드 2장 나눠주기 intro
         console.displayDealing(names);
 
         // 5. 딜러 첫 카드 받기
-        Hand dealingDealer = blackJackService.dealing(dealer, standard);
+        Hand dealingDealer = blackJack.dealing(dealer, standard);
         console.displayHand(dealingDealer);
 
         // 5. 플레이어 첫 카드 받기
         for (Player player : players) {
-            Hand dealingPlayer = blackJackService.dealing(player, standard);
+            Hand dealingPlayer = blackJack.dealing(player, standard);
             console.displayHand(player.getName(), dealingPlayer);
         }
 
@@ -62,7 +62,7 @@ public class Application {
                 String answerRequest = console.read();
                 boolean isYes = new AnswerConverter().convert(answerRequest);
 
-                boolean isStop = blackJackService.hit(player, isYes,
+                boolean isStop = blackJack.hit(player, isYes,
                         standard);
                 console.displayHand(player);
 
@@ -73,16 +73,16 @@ public class Application {
         }
 
         // 7. 딜러 카드받기
-        boolean isHit = blackJackService.hit(dealer, standard);
+        boolean isHit = blackJack.hit(dealer, standard);
         console.displayHit(isHit);
 
         // 8. 딜러 합계 출력
-        int dealerSum = blackJackService.sum(dealer);
+        int dealerSum = blackJack.sum(dealer);
         console.displayDealerResult(dealer, dealerSum);
 
         // 9. 플레이어 합계 출력
         for (Player player : players) {
-            int playerSum = blackJackService.sum(player);
+            int playerSum = blackJack.sum(player);
             console.displayPlayerResult(player, playerSum);
         }
 
@@ -90,12 +90,12 @@ public class Application {
         console.displayProfit();
 
         // 11. 딜러 수익 출력
-        int dealerProfit = blackJackService.dealerProfit(Players.from(players), dealer);
+        int dealerProfit = blackJack.dealerProfit(Players.from(players), dealer);
         console.displayDealerProfit(dealerProfit);
 
         // 12. 플레이어 결과 출력
         for (Player player : players) {
-            int playerProfit = blackJackService.playerProfit(player, dealer);
+            int playerProfit = blackJack.playerProfit(player, dealer);
             console.displayPlayerProfit(player, playerProfit);
         }
 
