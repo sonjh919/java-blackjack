@@ -14,14 +14,8 @@ import java.util.Map;
 
 public class BlackJack {
 
-    public List<Name> createNames(final List<String> names) {
-        return names.stream()
-                .map(Name::from)
-                .toList();
-    }
-
-    public Player createPlayer(final Name name, final int batting) {
-        return Player.of(name, Batting.from(batting));
+    public Player createPlayer(final String name, final int batting) {
+        return Player.of(Name.from(name), Batting.from(batting));
     }
 
     public CardDeck createCardDeck() {

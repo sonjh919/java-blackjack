@@ -31,8 +31,8 @@ public class Output {
         System.out.printf("%s의 배팅 금액은?" + NEW_LINE, name);
     }
 
-    public void dealing(final List<Name> names) {
-        System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names.stream().map(Name::getName).toList()));
+    public void dealing(final List<String> names) {
+        System.out.printf("딜러와 %s에게 2장을 나누었습니다.%n", String.join(",", names));
     }
 
     public void hand(final Hand dealerHand) {

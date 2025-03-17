@@ -20,14 +20,13 @@ public class Application {
 
         // 1. 이름입력
         console.askNames();
-        String nameRequest = console.read();
-        List<Name> names = blackJack.createNames(new NameConverter().convert(nameRequest));
+        List<String> names =new NameConverter().convert(console.read());
 
         // 2. 배팅입력 및 플레이어 생성
         List<Player> players = new ArrayList<>();
 
-        for (Name name : names) {
-            console.askBatting(name.getName());
+        for (String name : names) {
+            console.askBatting(name);
             Player player = blackJack.createPlayer(name,
                     new BattingConverter().convert(console.read()));
 

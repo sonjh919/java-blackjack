@@ -33,7 +33,7 @@ public class Console {
         output.batting(name);
     }
 
-    public void displayDealing(final List<Name> names) {
+    public void displayDealing(final List<String> names) {
         output.dealing(names);
     }
 
